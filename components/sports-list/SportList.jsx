@@ -79,6 +79,9 @@ export default function SportList() {
             chevron
             titleStyle={{ fontSize: 24 }}
             subtitleStyle={{ fontSize: 14 }}
+            onPress={() => {
+              console.log(item.title);
+            }}
           />
         );
       })}
