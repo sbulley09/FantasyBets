@@ -2,9 +2,9 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Header } from "react-native-elements";
-import BetScreen from "./components/screens/Bets";
-import HomeScreen from "./components/screens/Home";
-import ProfileScreen from "./components/screens/Profile";
+import BetScreen from "./components/main-screens/Bets";
+import HomeScreen from "./components/main-screens/Home";
+import ProfileScreen from "./components/main-screens/Profile";
 
 const Tab = createBottomTabNavigator();
 

@@ -1,6 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
-import Constants from "expo-constants";
+import { ScrollView, StyleSheet } from "react-native";
 import { ListItem } from "react-native-elements";
 
 const data = [
@@ -66,7 +65,7 @@ const data = [
   },
 ];
 
-export default function SportList() {
+export default function SportList({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       {data.map((item, i) => {
@@ -80,7 +79,7 @@ export default function SportList() {
             titleStyle={{ fontSize: 24 }}
             subtitleStyle={{ fontSize: 14 }}
             onPress={() => {
-              console.log(item.title);
+              navigation.navigate("MatchDetails");
             }}
           />
         );
