@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { ListItem } from "react-native-elements";
+import MatchListItem from "./MatchListItem";
 
 const data = [
   {
@@ -70,14 +70,10 @@ export default function SportList({ navigation }) {
     <ScrollView style={styles.container}>
       {data.map((item, i) => {
         return (
-          <ListItem
+          <MatchListItem
             key={i}
             title={item.title}
-            subtitle={"testing"}
-            bottomDivider
-            chevron
-            titleStyle={{ fontSize: 24 }}
-            subtitleStyle={{ fontSize: 14 }}
+            subtitle={"Head to Head Odds"}
             onPress={() => {
               navigation.navigate("MatchDetails");
             }}
