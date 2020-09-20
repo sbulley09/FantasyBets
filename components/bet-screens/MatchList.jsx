@@ -65,7 +65,7 @@ const data = [
   },
 ];
 
-export default function SportList({ navigation }) {
+const SportList = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
       {data.map((item, i) => {
@@ -82,7 +82,7 @@ export default function SportList({ navigation }) {
       })}
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -93,3 +93,5 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
 });
+
+export default SportList;

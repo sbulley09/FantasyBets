@@ -1,11 +1,11 @@
-import * as React from "react";
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import MatchList from "../bet-screens/MatchList";
 import MatchDetails from "../bet-screens/MatchDetails";
 
 const Stack = createStackNavigator();
 
-export default function BetScreen() {
+const BetScreen = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name={"Matches"} component={MatchList} />
@@ -16,4 +16,6 @@ export default function BetScreen() {
       />
     </Stack.Navigator>
   );
-}
+};
+
+export default BetScreen;
