@@ -8,13 +8,17 @@ import {
   TextInput,
 } from "react-native";
 import { Button, CheckBox } from "react-native-elements";
+import moment from "moment";
 
-const MatchDetails = () => {
+const MatchDetails = ({ route }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [value, onChangeText] = useState("Placeholder");
   const [moneyLineChecked, setMoneyLineChecked] = useState(false);
   const [totalChecked, setTotalChecked] = useState(false);
   const [goalLineChecked, setGoalLineChecked] = useState(false);
+
+  const { matchDetails } = route.params;
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -95,7 +99,12 @@ const MatchDetails = () => {
       </Modal>
 
       <ScrollView style={{ flex: 1, width: "100%" }}>
-        <Text style={{ height: 30, alignItems: "center" }}>Nick v. Jake</Text>
+        <Text style={{ height: 30, alignItems: "center" }}>
+          {matchDetails.teams[0]} vs. {matchDetails.teams[1]}
+        </Text>
+        <Text style={{ height: 30, alignItems: "center" }}>
+          {moment.unix(matchDetails.commence_time).format("dddd, MMMM Do YYYY, h:mm a")}
+        </Text>
         <View
           style={{
             flexDirection: "row",
@@ -168,6 +177,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    width: "100%"
   },
   textStyle: {
     fontWeight: "bold",

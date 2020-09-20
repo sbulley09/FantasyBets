@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { sportsUrl } from "../../utils/constants";
-import SportsListItem from "./SportsListItem";
+import { getOddsUrl } from "../../utils/constants";
+import MatchListItem from "./MatchListItem";
 
-const SportsList = ({ navigation }) => {
+const MatchList = ({ navigation, route }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch(sportsUrl)
+    const { sport } = route.params;
+    console.log(sport);
+    fetch(getOddsUrl(sport))
       .then((response) => response.json())
       .then((json) => setData(json.data))
       .catch(() => setData([]));
   }, []);
 
+  console.log(data);
   return (
     <ScrollView style={styles.container}>
       {data.map((item, i) => {
         console.log(item);
         return (
-          <SportsListItem
-            key={item.key}
-            title={item.title}
-            subtitle={item.details}
-            sport={item.key}
+          <MatchListItem
+            key={item.home_team}
+            title={`${item.teams[0]} vs. ${item.teams[1]}`}
             onPress={() => {
               navigation.navigate(
-                "MatchList",
+                "MatchDetails",
                 {
-                  sport: item.key,
+                  matchDetails: item,
                 }
               );
             }}
@@ -47,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SportsList;
+export default MatchList;

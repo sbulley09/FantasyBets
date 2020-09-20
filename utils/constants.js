@@ -3,8 +3,8 @@ const siteUrl = "https://api.the-odds-api.com";
 const apiKey = "8c827ac42fd594c66d49710bb2450e27";
 
 export const sportsUrl = `${siteUrl}/v3/sports/?apiKey=${apiKey}`;
-export const getOddsUrl = (sports, region = "us", mkt = "h2h") =>
-  `${siteUrl}/v3/odds/?apiKey=${apiKey}&sports=${sports}&region=${region}&mkt=${mkt}`;
+export const getOddsUrl = (sport, region = "us", mkt = "h2h") =>
+  `${siteUrl}/v3/odds/?apiKey=${apiKey}&sport=${sport}&region=${region}&mkt=${mkt}`;
 
 /*
 
