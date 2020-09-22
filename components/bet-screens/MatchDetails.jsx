@@ -103,7 +103,9 @@ const MatchDetails = ({ route }) => {
           {matchDetails.teams[0]} vs. {matchDetails.teams[1]}
         </Text>
         <Text style={{ height: 30, alignItems: "center" }}>
-          {moment.unix(matchDetails.commence_time).format("dddd, MMMM Do YYYY, h:mm a")}
+          {moment
+            .unix(matchDetails.commence_time)
+            .format("dddd, MMMM Do YYYY, h:mm a")}
         </Text>
         <View
           style={{
@@ -139,6 +141,7 @@ const MatchDetails = ({ route }) => {
           <Text style={{ flex: 3, height: 25 }}>0, -0.5 +103</Text>
           <Text style={{ flex: 3, height: 25 }}>0, +0.5 +127</Text>
         </View>
+        <Text>{JSON.stringify(matchDetails, null, "\t")}</Text>
       </ScrollView>
       <Button
         buttonStyle={{ ...styles.openButton, backgroundColor: "green" }}
@@ -177,7 +180,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-    width: "100%"
+    width: "100%",
   },
   textStyle: {
     fontWeight: "bold",

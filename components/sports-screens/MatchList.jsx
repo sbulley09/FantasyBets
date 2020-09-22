@@ -17,23 +17,17 @@ const MatchList = ({ navigation, route }) => {
   console.log(data);
   return (
     <ScrollView style={styles.container}>
-      {data.map((item, i) => {
-        console.log(item);
-        return (
-          <MatchListItem
-            key={item.home_team}
-            title={`${item.teams[0]} vs. ${item.teams[1]}`}
-            onPress={() => {
-              navigation.navigate(
-                "MatchDetails",
-                {
-                  matchDetails: item,
-                }
-              );
-            }}
-          />
-        );
-      })}
+      {data.map((item, i) => (
+        <MatchListItem
+          key={i}
+          title={`${item.teams[0]} vs. ${item.teams[1]}`}
+          onPress={() => {
+            navigation.navigate("MatchDetails", {
+              matchDetails: item,
+            });
+          }}
+        />
+      ))}
     </ScrollView>
   );
 };

@@ -14,25 +14,19 @@ const SportsList = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      {data.map((item, i) => {
-        console.log(item);
-        return (
-          <SportsListItem
-            key={item.key}
-            title={item.title}
-            subtitle={item.details}
-            sport={item.key}
-            onPress={() => {
-              navigation.navigate(
-                "MatchList",
-                {
-                  sport: item.key,
-                }
-              );
-            }}
-          />
-        );
-      })}
+      {data.map((item, i) => (
+        <SportsListItem
+          key={i}
+          title={item.title}
+          subtitle={item.details}
+          sport={item.key}
+          onPress={() => {
+            navigation.navigate("MatchList", {
+              sport: item.key,
+            });
+          }}
+        />
+      ))}
     </ScrollView>
   );
 };
