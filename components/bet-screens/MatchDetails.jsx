@@ -69,7 +69,6 @@ const MatchDetails = ({ route }) => {
               >
                 <Button
                   buttonStyle={{
-                    ...styles.openButton,
                     backgroundColor: "gray",
                   }}
                   onPress={() => {
@@ -86,7 +85,7 @@ const MatchDetails = ({ route }) => {
                 }}
               >
                 <Button
-                  buttonStyle={{ ...styles.openButton }}
+                  buttonStyle={{ }}
                   onPress={() => {
                     setModalVisible(!modalVisible);
                   }}
@@ -144,6 +143,7 @@ const MatchDetails = ({ route }) => {
         <Text>{JSON.stringify(matchDetails, null, "\t")}</Text>
       </ScrollView>
       <Button
+        containerStyle={{ width: "100%" }}
         buttonStyle={{ ...styles.openButton, backgroundColor: "green" }}
         title="+ Create Bet"
         type="solid"
@@ -177,10 +177,9 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   openButton: {
-    borderRadius: 20,
+    borderRadius: 0,
     padding: 10,
     elevation: 2,
-    width: "100%",
   },
   textStyle: {
     fontWeight: "bold",
