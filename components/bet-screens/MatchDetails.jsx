@@ -7,93 +7,115 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
-import { Button, CheckBox } from "react-native-elements";
+import { Button, CheckBox, Input } from "react-native-elements";
 import moment from "moment";
 
 const MatchDetails = ({ route }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [value, onChangeText] = useState("Placeholder");
+  const [value, onChangeText] = useState(0);
   const [moneyLineChecked, setMoneyLineChecked] = useState(false);
   const [totalChecked, setTotalChecked] = useState(false);
   const [goalLineChecked, setGoalLineChecked] = useState(false);
 
   const { matchDetails } = route.params;
 
+  const payout = 4 * value;
+
   return (
     <View style={styles.centeredView}>
       <Modal
         animationType="fade"
-        transparent={true}
         visible={modalVisible}
+        presentationStyle={"overFullScreen"}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Nick vs. Jake</Text>
-            <CheckBox
-              title="Money Line Bet"
-              checked={moneyLineChecked}
-              onPress={() => setMoneyLineChecked(!moneyLineChecked)}
-            />
-            <CheckBox
-              title="Total Bet"
-              checked={totalChecked}
-              onPress={() => setTotalChecked(!totalChecked)}
-            />
-            <CheckBox
-              title="Goal Line Bet"
-              checked={goalLineChecked}
-              onPress={() => setGoalLineChecked(!goalLineChecked)}
-            />
-            <TextInput
-              style={{
-                height: 40,
-                borderColor: "gray",
-                borderWidth: 1,
-                width: 100,
-              }}
-              onChangeText={(text) => onChangeText(text)}
-              value={value}
-              keyboardType="number-pad"
-            />
+            <ScrollView style={{ flex: 1, width: "100%" }}>
+              <Text style={styles.modalText}>
+                {matchDetails.teams[0]} vs. {matchDetails.teams[1]}
+              </Text>
+              <CheckBox
+                containerStyle={{ width: "100%" }}
+                title="Money Line Bet"
+                checked={moneyLineChecked}
+                onPress={() => setMoneyLineChecked(!moneyLineChecked)}
+              />
+              <CheckBox
+                containerStyle={{ width: "100%" }}
+                title="Total Bet"
+                checked={totalChecked}
+                onPress={() => setTotalChecked(!totalChecked)}
+              />
+              <CheckBox
+                containerStyle={{ width: "100%" }}
+                title="Goal Line Bet"
+                checked={goalLineChecked}
+                onPress={() => setGoalLineChecked(!goalLineChecked)}
+              />
+              </ScrollView>
+              <Input
+                style={{
+                  borderColor: "gray",
+                  borderWidth: 1,
+                  width: 100,
+                }}
+                leftIcon={<Text>$</Text>}
+                label="Wager"
+                onChangeText={(text) => onChangeText(text)}
+                value={value}
+                keyboardType="number-pad"
+              />
+              <Input
+                style={{
+                  width: 100,
+                }}
+                label="Payout"
+                leftIcon={<Text>$</Text>}
+                disabled
+                onChangeText={(text) => onChangeText(text)}
+                value={"" + payout}
+                keyboardType="number-pad"
+              />
 
-            <View style={{ flexDirection: "row", width: "100%" }}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  flex: 1,
-                  justifyContent: "flex-start",
-                }}
-              >
-                <Button
-                  buttonStyle={{
-                    backgroundColor: "gray",
+              <View style={{ flexDirection: "row", width: "100%" }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    flex: 1,
+                    justifyContent: "flex-start",
                   }}
-                  onPress={() => {
-                    setModalVisible(!modalVisible);
+                >
+                  <Button
+                    buttonStyle={{
+                      backgroundColor: "gray",
+                    }}
+                    onPress={() => {
+                      setModalVisible(!modalVisible);
+                    }}
+                    title={<Text style={styles.textStyle}>Cancel</Text>}
+                  />
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    flex: 1,
+                    justifyContent: "flex-end",
                   }}
-                  title={<Text style={styles.textStyle}>Cancel</Text>}
-                />
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  flex: 1,
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Button
-                  buttonStyle={{ }}
-                  onPress={() => {
-                    setModalVisible(!modalVisible);
-                  }}
-                  title={<Text style={styles.textStyle}>Place Bet</Text>}
-                />
+                >
+                  <Button
+                    disabled={!(goalLineChecked || moneyLineChecked || totalChecked)}
+                    buttonStyle={{ }}
+                    onPress={() => {
+                      setModalVisible(!modalVisible);
+                    }}
+                    title={<Text style={styles.textStyle}>Place Bet</Text>}
+                  />
+                </View>
               </View>
             </View>
-          </View>
         </View>
       </Modal>
 
@@ -174,6 +196,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    height: "100%",
     width: "100%",
   },
   openButton: {
