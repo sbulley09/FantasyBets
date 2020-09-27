@@ -33,10 +33,10 @@ const MatchDetails = ({ route }) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <Text style={styles.modalText}>
+              {matchDetails.teams[0]} vs. {matchDetails.teams[1]}
+            </Text>
             <ScrollView style={{ flex: 1, width: "100%" }}>
-              <Text style={styles.modalText}>
-                {matchDetails.teams[0]} vs. {matchDetails.teams[1]}
-              </Text>
               <CheckBox
                 containerStyle={{ width: "100%" }}
                 title="Money Line Bet"
