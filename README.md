@@ -1,5 +1,10 @@
 # FantasyBets
 
+The concept is simple. What if we merged the concept of fantasy football, investing, and sports betting into one? You'd land in a world where individual bets are insignificant compared to the grand scheme of long term bets and investments. This is the core of Fantasy Bets.
+
+Create a pool of players, set a period of time, and unleash your sports expertise to maximize profits. The player with the most winnings at the end of the time period takes home the prize.
+
+
 ## Contributing
 
 - Reference video I used to get started: https://www.youtube.com/watch?v=0-S5a0eXPoc&t=389s
